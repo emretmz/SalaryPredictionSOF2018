@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import lightgbm
 from sklearn.model_selection import train_test_split
 
 def binary_map(feature):

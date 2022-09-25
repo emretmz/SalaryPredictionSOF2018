@@ -2,33 +2,40 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from PIL import Image
+
  
 from preprocessing import preprocess
 #load the model from disk
 import joblib
 filename = 'model_lgbm.sav'
 model = joblib.load(filename)
+def add_logo(logo_path, width, height):
+    
+    logo = Image.open(logo_path)
+    modified_logo = logo.resize((width, height))
+    return modified_logo
 
 def main():
 
     st.set_page_config(page_title='StackOverflowDeveloperSurvey')
-    st.title('StackOverflowDeveloperSurvey2018')
-    st.markdown("""
-                :dart:  This Streamlit app is made to predict Salary of the developers who participated in the 2018 StackOverflow survey.
-    The application is functional for both online prediction and batch data prediction. \n
-    """)
-    st.markdown("<h3></h3>", unsafe_allow_html=True)
+   # st.title('SALARY PREDICTION APP')
+    st.markdown('<h1 style="text-align:center;font-weight:bolder;font-size:45px;">SALARY PREDICTION APP</h1>',unsafe_allow_html=True)
+
+    st.info("In this project, software developer salary prediction was made on the data of Stack Owerflow Survey in 2018.")
+
+    
+
     add_selectbox = st.sidebar.selectbox(
-    "How would you like to predict?", ("Online", "Batch"))
-    st.sidebar.info('This app is created to predict Salary')
+    "How would you like to predict?", ("Online", "Batch","Info"))
+    st.sidebar.image(add_logo(logo_path="InfoTech_logo.png", width=600, height=300))
+
     if add_selectbox == "Online":
-        st.info("")
         #Based on our optimal features selection
         st.subheader("***")
 
         #AGE
-        st.subheader("Enter a number.")  
-        age = st.number_input('1-What is your age?', min_value=18,value=18, max_value=75 , key = "ager")
+        st.subheader("Age")  
+        age = st.slider('1-What is your age?', min_value=18,value=18, max_value=75 , key = "ager")
         age_18_24_val=0
         age_25_34_val=0
         age_35_44_val=0
@@ -40,7 +47,7 @@ def main():
         
 
         #Employment
-        st.subheader("Select an option.")
+        st.subheader("Employment")
         emp_slf_val=0
         emp_fll_val=0
         emp_prt_val=0
@@ -53,8 +60,12 @@ def main():
 
 
         #Dependents
-        st.subheader("Select an option.") 
-        Dependents_No = st.selectbox('3-Do you have any children or other dependents that you care for? If you prefer not to answer, you may leave this question blank.', ('Yes','No'), key = "d")
+        st.subheader("Dependents") 
+        Dependents_No = st.radio(
+        "3-Do you have any children or other dependents that you care for? If you prefer not to answer, you may leave this question blank.",
+        ('Yes', 'No'), key = "d")
+        if Dependents_No=='Yes':Dependents_No='No'
+        else: Dependents_No='Yes'
         
         #YearsCodingProf
         yc_0_2_val=0
@@ -63,7 +74,7 @@ def main():
         yc_9_11_val=0
         yc_11_30_val=0
 
-        st.subheader("Select an option.") 
+        st.subheader("Professional Coding Experience") 
         YearsCodingProf = st.number_input('4-For how many years have you coded professionally (as a part of your work)?', min_value=0, max_value=30, value=10, key = "yy")
 
         if 0<YearsCodingProf<=2:age_18_24_val=1
@@ -74,7 +85,7 @@ def main():
         else:pass
 
         #PlatformWorkedWith
-        st.subheader("Select an option.")
+        st.subheader("Platform")
         plt_aws_val=0
         plt_windw_val=0
         plt_mac_val=0
@@ -97,7 +108,7 @@ def main():
             else :plt_and_val=1
 
         #CareerSatisfaction
-        st.subheader("Select an option.")
+        st.subheader("Career Satisfaction")
         cr_exs_val=0
         cr_ms_val=0
         cr_md_val=0
@@ -110,7 +121,7 @@ def main():
         else :cr_md_val=1
 
         #DevType
-        st.subheader("Select an option.") 
+        st.subheader("Developer Type") 
         dv_std_val=0
         dv_em_val=0
         dv_da_val=0
@@ -137,7 +148,7 @@ def main():
             if i=='Product manager':dv_prd_val=1
             else :dv_prd_val=1
        #LanguageWithWork
-        st.subheader("Select an option.") 
+        st.subheader("Programming Language") 
         worked_php=0
         worked_cplus=0
         worked_html=0
@@ -157,11 +168,11 @@ def main():
             else :worked_type=1
 
         #CompanySize
-        st.subheader("Select an option.")
+        st.subheader("Company Size")
         CompanySize_Small_5_60 = st.selectbox('9-Approximately how many people are employed by the company or organization you work for?', ('No','Yes'),key = "cc")
     
         #Country
-        st.subheader("Select an option.")
+        st.subheader("Country")
         ccs=['Andorra','Liechtenstein','Venezuela, Bolivarian Republic of...','Ireland','Botswana','Saint Lucia','Togo','Luxembourg','Iceland','United States','Norway','Switzerland','New Zealand','South Korea','United Kingdom','Australia','Sierra Leone','United Arab Emirates','Tunisia','Canada','Denmark','Israel','Italy','Mongolia','Other Country (Not Listed Above)','Uruguay','Zimbabwe','Germany','Qatar','Singapore','France','Bahamas','Spain','Netherlands','Malta','Japan','Finland','Sweden','Austria','Jamaica','Saudi Arabia','Belgium','South Africa','Bosnia and Herzegovina','Hong Kong (S.A.R.)','Cuba','Afghanistan','Libyan Arab Jamahiriya','Brazil','Oman','Chile','Slovenia','Cyprus','Republic of Moldova','Romania','Greece','Estonia','Malaysia','Portugal','Colombia','Bulgaria','Taiwan','Czech Republic','Marshall Islands','Mauritius','Serbia','Costa Rica','Hungary','Lithuania','Kuwait','Ecuador','Turkey','Lesotho','Armenia','Thailand','Montenegro','Poland','Argentina','China','Democratic Republic of the Congo','Latvia','Panama','The former Yugoslav Republic of Macedonia','Republic of Korea','Dominican Republic','Slovakia','Croatia','Paraguay','Kenya','Nicaragua','Jordan','Lebanon','Bahrain','Mexico','Tajikistan','Belarus','Trinidad and Tobago','India','Georgia','Ukraine','Bangladesh','United Republic of Tanzania','Russian Federation','Cameroon','Benin','Algeria','Nigeria','Madagascar','Philippines','Albania','Guatemala','El Salvador','Cambodia','Morocco','Peru','Honduras','Senegal','Viet Nam','Suriname','Barbados','Mozambique','Malawi','Uganda','Azerbaijan','Pakistan','Rwanda','Kazakhstan','Myanmar','Indonesia','Somalia','Iran, Islamic Republic of...','Namibia','Uzbekistan','Ghana','Sri Lanka','Nepal','Maldives','Bolivia','Turkmenistan','Congo, Republic of the...','Egypt','Fiji','Syrian Arab Republic','Yemen','Kyrgyzstan','Sudan','Ethiopia','Iraq','Guyana','Bhutan','Gambia',"Côte d'Ivoire",'Eritrea','Swaziland','Zambia','Dominica','Monaco']
         ccs=sorted(ccs)
         country= st.selectbox('10-In which country do you currently reside?', (ccs),key = "co")
@@ -194,7 +205,7 @@ def main():
             if i==country:low_less_val=1
         
         #IDE
-        st.subheader("Select an option.")
+        st.subheader("IDE")
         ide_ntpdpls_val=0
         ide_eclp_val=0
         ide_phpstr_val=0
@@ -220,7 +231,7 @@ def main():
 
 
         #CommunicationTools
-        st.subheader("Select an option.")
+        st.subheader("Communication Tools")
         ct_sl_val=0
         ct_co_val=0
         ct_ji_val=0
@@ -246,7 +257,7 @@ def main():
         #if ab8w=='Good':ab8_go_val=1
         
         #PlatformDesireNextYear
-        st.subheader("Select an option.")
+        st.subheader("Desired Platform")
         pltdsr_and_val=0
         pltdsr_rasp_val=0
         pltdsr_her_val=0
@@ -265,7 +276,7 @@ def main():
             else :pltdsr_aws_val=1
 
         #LanguageDesireNextYear
-        st.subheader("Select an option.")
+        st.subheader("Desired Language")
         lng_jvascp_val=0
         lng_sql_val=0
         lng_html_val=0
@@ -285,7 +296,7 @@ def main():
             else :lng_php_val=1
 
         #DatabaseDesireNextYear
-        st.subheader("Select an option.")
+        st.subheader( "Desired Database")
         db_mngdb_val=0
         db_sqlsrv_val=0
         db_mysql_val=0
@@ -302,7 +313,7 @@ def main():
             
 
         #HopeFiveYears
-        st.subheader("Select an option")
+        st.subheader("Hope in Five Years")
         hop_engman_val=0
         hop_hvng_val=0
         hop_anthr_val=0
@@ -312,6 +323,9 @@ def main():
         if hopw =='Havingown Company':hop_hvng_val=1
         if hopw =='Anotherrole':hop_anthr_val=1
         else :hop_anthr_val=1
+
+
+        
 
 
 
@@ -349,6 +363,7 @@ def main():
         st.markdown("<h3></h3>", unsafe_allow_html=True)
         st.dataframe(features_df)
 
+        
         #Preprocess inputs
         preprocess_df = preprocess(features_df, 'Online')
         print(preprocess_df.columns)
@@ -357,7 +372,31 @@ def main():
         if st.button('Predict'):
             
             st.warning(prediction)
-            
+
+    elif add_selectbox == "Info":
+        st.markdown("<h3></h3>", unsafe_allow_html=True)
+        st.markdown("<h3></h3>", unsafe_allow_html=True)
+        df=pd.DataFrame
+        st.subheader("Project Steps")
+        st.markdown("""\n\n\n\nThe steps followed while preparing this project are as follows: \n""")
+        st.image(add_logo(logo_path="steps.png", width=4000, height=2000))
+        st.subheader("Feature Importance")
+        st.image(add_logo(logo_path="shap_imp.png", width=15000, height=7500))
+        st.subheader("Avg. Salary by Age and Gender")
+        st.image(add_logo(logo_path="slr.png", width=15000, height=7500))
+        st.subheader("Career Satisfaction by Country")
+        st.image(add_logo(logo_path="sts.png", width=15000, height=7500))
+        st.subheader("Avg.Salary by Formal Education and Gender")
+        st.image(add_logo(logo_path="edu.png", width=15000, height=7500))
+        st.info("""\n\n\n\nThis model is created from 130 columns and 40k rows.\n\nMax Salary:195k USD and Min Salary: 25k USD.\n\nThe selected model is Light GBM Regressor.\n""")
+
+
+        st.sidebar.info("""CONTRIBUTORS
+                  \nEmre Temiz
+                  \nHasan Hacioglu
+                  \nMerve Atay
+                  \nErtan Palut""")
+
     else:
         st.subheader("Dataset upload")
         uploaded_file = st.file_uploader("Choose a file")
@@ -377,7 +416,7 @@ def main():
                 st.markdown("<h3></h3>", unsafe_allow_html=True)
                 st.subheader('Prediction')
                 st.write(prediction_df)    
-        
+
 
 if __name__ == '__main__':
         main()
