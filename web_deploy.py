@@ -388,7 +388,7 @@ def main():
         st.image(add_logo(logo_path="sts.png", width=15000, height=7500))
         st.subheader("Avg.Salary by Formal Education and Gender")
         st.image(add_logo(logo_path="edu.png", width=15000, height=7500))
-        st.info("""\n\n\n\nThis model is created from 130 columns and 40k rows.\n\nMax Salary:195k USD and Min Salary: 25k USD.\n\nThe selected model is Light GBM Regressor.\n\nThe Root Mean Square Error is 35k""")
+        st.info("""\n\n\n\nThis model is created from 130 columns and 40k rows.\n\nMax Salary:195k USD and Min Salary: 25k USD.\n\nThe selected model is Light GBM Regressor.\n\nThe Root Mean Square Error is 35k USD.""")
 
 
         st.sidebar.info("""CONTRIBUTORS
