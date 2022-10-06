@@ -387,7 +387,7 @@ def main():
         preprocess_df = preprocess(features_df, 'Online')
         print(preprocess_df.columns)
         prediction = model.predict(preprocess_df)
-        prediction=round(prediction)
+         
         if st.button('Predict'):
             
             st.warning(prediction +' USD per year')
