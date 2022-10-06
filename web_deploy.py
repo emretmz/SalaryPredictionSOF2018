@@ -387,10 +387,10 @@ def main():
         preprocess_df = preprocess(features_df, 'Online')
         print(preprocess_df.columns)
         prediction = model.predict(preprocess_df)
-        prediction=round(prediction)+' USD per year'
+        prediction=round(prediction)
         if st.button('Predict'):
             
-            st.warning(prediction)
+            st.warning(prediction +' USD per year')
 
     elif add_selectbox == "Info":
         st.markdown("<h3></h3>", unsafe_allow_html=True)
