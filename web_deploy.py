@@ -169,8 +169,22 @@ def main():
 
         #CompanySize
         st.subheader("Company Size")
-        CompanySize_Small_5_60 = st.selectbox('9-Approximately how many people are employed by the company or organization you work for?', ('No','Yes'),key = "cc")
-    
+        
+        csize10k=0,
+        csize_fewer_10=0,
+        csize10_19=0,
+        csize1k_5k=0,
+        csize_500_1k=0
+
+        csize=[ 'Fewer than 10 employees','10 to 19 employees','500 to 999 employees','1000 to 4999 employees','10000 or more employees']
+
+        CompanySize= st.selectbox('9-Approximately how many people are employed by the company or organization you work for?', (csize),key = "csize")
+        
+        if CompanySize=='Fewer than 10 employees':csize_fewer_10=1
+        if CompanySize=='10 to 19 employees':csize10_19=1
+        if CompanySize=='500 to 999 employees':csize_500_1k=1
+        if CompanySize=='1000 to 4999 employees':csize1k_5k=1
+        else :csize10k=1
         #Country
         st.subheader("Country")
         ccs=['Andorra','Liechtenstein','Venezuela, Bolivarian Republic of...','Ireland','Botswana','Saint Lucia','Togo','Luxembourg','Iceland','United States','Norway','Switzerland','New Zealand','South Korea','United Kingdom','Australia','Sierra Leone','United Arab Emirates','Tunisia','Canada','Denmark','Israel','Italy','Mongolia','Other Country (Not Listed Above)','Uruguay','Zimbabwe','Germany','Qatar','Singapore','France','Bahamas','Spain','Netherlands','Malta','Japan','Finland','Sweden','Austria','Jamaica','Saudi Arabia','Belgium','South Africa','Bosnia and Herzegovina','Hong Kong (S.A.R.)','Cuba','Afghanistan','Libyan Arab Jamahiriya','Brazil','Oman','Chile','Slovenia','Cyprus','Republic of Moldova','Romania','Greece','Estonia','Malaysia','Portugal','Colombia','Bulgaria','Taiwan','Czech Republic','Marshall Islands','Mauritius','Serbia','Costa Rica','Hungary','Lithuania','Kuwait','Ecuador','Turkey','Lesotho','Armenia','Thailand','Montenegro','Poland','Argentina','China','Democratic Republic of the Congo','Latvia','Panama','The former Yugoslav Republic of Macedonia','Republic of Korea','Dominican Republic','Slovakia','Croatia','Paraguay','Kenya','Nicaragua','Jordan','Lebanon','Bahrain','Mexico','Tajikistan','Belarus','Trinidad and Tobago','India','Georgia','Ukraine','Bangladesh','United Republic of Tanzania','Russian Federation','Cameroon','Benin','Algeria','Nigeria','Madagascar','Philippines','Albania','Guatemala','El Salvador','Cambodia','Morocco','Peru','Honduras','Senegal','Viet Nam','Suriname','Barbados','Mozambique','Malawi','Uganda','Azerbaijan','Pakistan','Rwanda','Kazakhstan','Myanmar','Indonesia','Somalia','Iran, Islamic Republic of...','Namibia','Uzbekistan','Ghana','Sri Lanka','Nepal','Maldives','Bolivia','Turkmenistan','Congo, Republic of the...','Egypt','Fiji','Syrian Arab Republic','Yemen','Kyrgyzstan','Sudan','Ethiopia','Iraq','Guyana','Bhutan','Gambia',"Côte d'Ivoire",'Eritrea','Swaziland','Zambia','Dominica','Monaco']
@@ -353,7 +367,12 @@ def main():
                 'HopeFiveYears_Anotherrole':hop_anthr_val,'IDE_Notepadplusplus':ide_ntpdpls_val,'IDE_Eclipse':ide_eclp_val,
                 'IDE_PHPStorm':ide_phpstr_val,'IDE_Sublime_Text':ide_subtxt_val,'IDE_IntelliJ':ide_intl_val,
                 'IDE_Visual_Studio_Code':ide_vscde_val,'IDE_Android_Studio':ide_andr_val,'DatabaseDesireNextYear_MongoDB':db_mngdb_val,'DatabaseDesireNextYear_SQL_Server':db_sqlsrv_val,
-                'DatabaseDesireNextYear_MySQL':db_mysql_val
+                'DatabaseDesireNextYear_MySQL':db_mysql_val,
+                'CompanySize_10000_or_more_employees':csize10k,
+                'CompanySize_Fewer_than_10_employees':csize_fewer_10,
+                'CompanySize_10_to_19_employees':csize10_19,
+                'CompanySize_1000_to_4999_employees':csize1k_5k,
+                'CompanySize_500_to_999_employees':csize_500_1k
 
                 }
  

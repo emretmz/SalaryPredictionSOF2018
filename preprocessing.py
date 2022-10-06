@@ -179,7 +179,7 @@ def preprocess(df, option):
 
     if (option == "Online"):
 
-        binary_list=[ 'CompanySize_Small_5_60','Dependents_No']
+        binary_list=[ 'Dependents_No']
         df[binary_list] = df[binary_list].apply(binary_map)
         
         df = pd.get_dummies(df).reindex(columns=cols, fill_value=0)
