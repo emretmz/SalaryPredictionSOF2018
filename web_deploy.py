@@ -387,7 +387,7 @@ def main():
         preprocess_df = preprocess(features_df, 'Online')
         print(preprocess_df.columns)
         prediction = model.predict(preprocess_df)
-
+        prediction=round(prediction)+' USD per year'
         if st.button('Predict'):
             
             st.warning(prediction)
@@ -429,8 +429,9 @@ def main():
             if st.button('Predict'):
                 #Get batch prediction
                 prediction = model.predict(preprocess_df)
-                prediction_df = pd.DataFrame(round(prediction),' USD per year', columns=["Predictions"])
- 
+                prediction_df = pd.DataFrame(prediction, columns=["Predictions"])
+                prediction_df = prediction_df.replace({1:'Yes, the passenger survive.', 0:'No, the passenger died'})
+
                 st.markdown("<h3></h3>", unsafe_allow_html=True)
                 st.subheader('Prediction')
                 st.write(prediction_df)    
