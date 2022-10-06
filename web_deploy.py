@@ -390,7 +390,7 @@ def main():
          
         if st.button('Predict'):
             
-            st.warning(prediction ,' USD per year')
+            st.warning(prediction)
 
     elif add_selectbox == "Info":
         st.markdown("<h3></h3>", unsafe_allow_html=True)
