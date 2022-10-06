@@ -346,7 +346,7 @@ def main():
 
         #DATAFRAME
         # 'AssessBenefits8_Good':ab8_go_val,            
-        data = {'Dependents_No':Dependents_No,'YearsCodingProf':YearsCodingProf,'CompanySize_Small_5_60':CompanySize_Small_5_60,'Country_extremely_high_90k_198k':extremely_val,'Country_very_high_65k_90k':very_high_val,
+        data = {'Dependents_No':Dependents_No,'YearsCodingProf':YearsCodingProf,'Country_extremely_high_90k_198k':extremely_val,'Country_very_high_65k_90k':very_high_val,
                'Country_high_45k_65k':high_val,'Country_moderate_25k_45k':moderate_val,'Country_somewhat_low_10k_25k':somewhat_val,'Country_low_less_10k':low_less_val,
                'Age_18_24_years_old':age_18_24_val,'Age_35_44_years_old':age_35_44_val,'Age_25_34_years_old':age_25_34_val,'Age_45_54_years_old':age_45_66_val,
                'YearsCodingProf_0_2_years':yc_0_2_val,'YearsCodingProf_3_5_years':yc_3_5_val,'YearsCodingProf_6_8_years':yc_6_8_val,'YearsCodingProf_9_11_years':yc_9_11_val,'YearsCodingProf_30_or_more_years':yc_11_30_val,
