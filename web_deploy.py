@@ -331,7 +331,7 @@ def main():
         hop_engman_val=0
         hop_hvng_val=0
         hop_anthr_val=0
-        hop=['Anotherrole','Engineeringmanager','Havingown Company','ProductManager','Retirement','UnrelatedCareer''Same']
+        hop=['Another role','Engineering manager','Having own company','Product Manager','Retirement','Unrelated Career''Same']
         hopw = st.selectbox('16-Which of the following best describes what you hope to be doing in five years?', (hop), key = "hop")
         if hopw =='Engineeringmanager':hop_engman_val=1
         if hopw =='Havingown Company':hop_hvng_val=1
