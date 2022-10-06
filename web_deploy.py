@@ -429,9 +429,8 @@ def main():
             if st.button('Predict'):
                 #Get batch prediction
                 prediction = model.predict(preprocess_df)
-                prediction_df = pd.DataFrame(prediction, columns=["Predictions"])
-                prediction_df = prediction_df.replace({1:'Yes, the passenger survive.', 0:'No, the passenger died'})
-
+                prediction_df = pd.DataFrame(round(prediction),' USD per year', columns=["Predictions"])
+ 
                 st.markdown("<h3></h3>", unsafe_allow_html=True)
                 st.subheader('Prediction')
                 st.write(prediction_df)    
