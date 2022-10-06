@@ -51,7 +51,7 @@ def main():
         emp_slf_val=0
         emp_fll_val=0
         emp_prt_val=0
-        emp =['Full Time','Part Time','Self Employed','Retired','Not Wanttowork','Looking Forwork']
+        emp =['Full Time','Part Time','Self Employed','Retired','Not Want to work','Looking For work']
         empw = st.selectbox('2-Which of the following best describes your current employment status?',   (emp), key = "emp")
         if empw =='Self Employed':emp_slf_val=1
         if empw =='Full Time':emp_fll_val=1
