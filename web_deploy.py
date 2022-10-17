@@ -391,7 +391,7 @@ def main():
         btn_predict = st.button('Calculate Salary')
 
         if btn_predict:
-            st.subheader(f"The estimated salary is $ {salary}")
+            st.subheader(f"The estimated salary is $ {salary} per year.")
 
     elif add_selectbox == "Info":
         st.markdown("<h3></h3>", unsafe_allow_html=True)
