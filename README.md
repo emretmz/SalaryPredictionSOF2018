@@ -14,3 +14,7 @@ RESULTS
 
 Non-Linear Regression:
 The best model is Light GBM Regressor between CART,ANN,RF,MLP,XGBOOST.Based on the operations performed, Light GBM Regression gave the lowest error. Light GBM: 35.000.
+
+WEBSITE
+
+https://emretmz-salarypredictionsof2018-web-deploy-whvjjv.streamlitapp.com/
