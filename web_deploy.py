@@ -387,10 +387,11 @@ def main():
         preprocess_df = preprocess(features_df, 'Online')
         print(preprocess_df.columns)
         prediction = model.predict(preprocess_df)
-         
-        if st.button('Predict'):
-            
-            st.warning(prediction)
+        salary = round(prediction[0],2)
+        btn_predict = st.button('Calculate Salary')
+
+        if btn_predict:
+            st.subheader(f"The estimated salary is $ {salary}")
 
     elif add_selectbox == "Info":
         st.markdown("<h3></h3>", unsafe_allow_html=True)
